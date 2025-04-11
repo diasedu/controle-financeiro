@@ -1,0 +1,31 @@
+# Logs and caches
+writable/logs/
+writable/cache/
+
+# Session files
+writable/session/
+
+# Uploads (if not versioned)
+writable/uploads/
+
+# Environment-specific configuration
+.env
+
+# Composer dependencies
+vendor/
+
+# Node.js dependencies
+node_modules/
+
+# IDE and editor files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.~*
+*.idea/
+*.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
