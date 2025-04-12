@@ -7,6 +7,7 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="<?= base_url("public/css/libs/bootstrap.min.css") ?>">
 	<script src="<?= base_url("public/js/libs/bootstrap.min.js") ?>"></script>
+	<script src="<?= base_url("public/js/libs/jquery.min.js") ?>"></script>
 
 	<style>
 		html,
@@ -39,21 +40,24 @@
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 	<main class="form-signin w-100 m-auto">
-		<form>
+		<form method="post" action="login/auth">
 			<h1 class="h3 mb-3 fw-normal">Login</h1>
 
 			<div class="form-floating">
-				<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 				<label for="email">E-mail</label>
 			</div>
 			<div class="form-floating">
-				<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+				<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
 				<label for="senha">Senha</label>
 			</div>
 
-			<button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+			<div id="msg"></div>
+
+			<button class="btn btn-primary w-100 py-2" type="submit" id="btnLogin">Entrar</button>
 		</form>
 	</main>
+	<script src="<?= base_url(sprintf("public/js/login.js?v=%d", time())) ?>"></script>
 </body>
 
 </html>

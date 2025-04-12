@@ -8,6 +8,9 @@ writable/session/
 # Uploads (if not versioned)
 writable/uploads/
 
+# Debug files
+writable/debugbar
+
 # Environment-specific configuration
 .env
 
