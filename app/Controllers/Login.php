@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\HTTP\RedirectResponse;
+
 class Login extends BaseController
 {
     public function __construct()
@@ -9,9 +11,16 @@ class Login extends BaseController
         helper("form");
     }
 
-    public function index(): string
+    public function index(): string|RedirectResponse
     {
-        return view('login');
+        $logged = session()->get("logged");
+
+        if ($logged)
+        {
+            return redirect()->route("arealogada/principal");
+        }
+
+        return view("login");
     }
 
     public function auth(): \CodeIgniter\HTTP\ResponseInterface
@@ -52,9 +61,9 @@ class Login extends BaseController
             return $this->response->setJSON($response);
         }
 
-        $passisValid = password_verify($request["senha"], $usuarioExists[0]["senha_usua"]);
+        $passIsValid = password_verify($request["senha"], $usuarioExists[0]["senha_usua"]);
         
-        if (!$passisValid)
+        if (!$passIsValid)
         {
             $response = [
                 "error" => true,
@@ -85,5 +94,12 @@ class Login extends BaseController
         ];
 
         return $this->response->setJSON($response);
+    }
+
+    public function logout(): RedirectResponse
+    {
+        session()->destroy();
+
+        return redirect()->route("/");
     }
 }

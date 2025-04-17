@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.5",
-    "jquery": "^3.7.1"
+    "datatables.net-dt": "^2.2.2",
+    "jquery": "^3.7.1",
+    "jquery-mask-plugin": "^1.14.16"
   }
 }
