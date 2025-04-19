@@ -26,6 +26,8 @@
           <a class="nav-link" href="<?= base_url("logout") ?>"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </li>
       </ul>
+      
     </div>
   </div>
+  <span class="align-items-end" style="text-align: center"><?= session()->get("nome_usua") ?></span>
 </nav>

@@ -39,9 +39,14 @@ class Conta extends BaseController
     {
         $request = $this->request->getPost();
 
+
         $contaModel = model("arealogada/ContaModel");
         
-        $listContas = $contaModel->orderBy("desc_conta", "ASC")->findAll();
+        $listContas = $contaModel->
+            like("desc_conta", $request["filt_desc_conta"])->
+            where("sta_conta", $request["filt_sta_conta"])->
+            orderBy("desc_conta", "ASC")->
+        findAll();
 
         return $this->response->setJSON([
             "error" => false, 

@@ -24,19 +24,7 @@
 		<span class="badge bg-primary mb-3"><i class="fa-solid fa-filter"></i> Filtros</span>
 		<form id="formFilt" action="conta/getList" method="post" class="shadow border rounded p-3 mb-3">
 			<div class="row">
-				<div class="col-2">
-					<div class="form-floating mb-3">
-						<input type="date" class="form-control" id="filt_data_inicio" name="filt_data_inicio" placeholder="Data Início">
-						<label for="data_inicio">Data Início</label>
-					</div>
-				</div>
-				<div class="col-2">
-					<div class="form-floating mb-3">
-						<input type="date" class="form-control" id="fiilt_data_fim" name="filt_data_fim" placeholder="Data Fim">
-						<label for="filt_data_fim">Data Fim</label>
-					</div>
-				</div>
-				<div class="col-2">
+				<div class="col-10">
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="fiilt_desc_conta" name="filt_desc_conta" placeholder="Descrição">
 						<label for="filt_desc_conta">Descrição</label>
