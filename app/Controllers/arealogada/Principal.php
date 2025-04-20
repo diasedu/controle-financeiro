@@ -13,6 +13,6 @@ class Principal extends BaseController
 
     public function index(): string
     {
-        return view("arealogada/principal/Principal");
+        return view("arealogada/principal/principal");
     }
 }

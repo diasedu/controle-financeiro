@@ -9,19 +9,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="<?= base_url("arealogada/principal") ?>"><i class="fa-solid fa-house"></i> Principal</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("arealogada/conta") ?>"><i class="fa-solid fa-coins"></i> Contas</a>
-        </li>
-        <!--<li class="nav-item dropdown">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            
+            <?= sprintf("%s Cadastros", ICONE_CADASTRO) ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="<?= base_url("arealogada/conta") ?>"><i class="fa-solid fa-coins"></i> Contas</a></li>
+            <li><a class="dropdown-item" href="<?= base_url("arealogada/pagador") ?>"><?= sprintf("%s Pagadores", ICONE_PAGADOR) ?></a></li>
           </ul>
-        </li>-->
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url("logout") ?>"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </li>
@@ -29,5 +25,5 @@
       
     </div>
   </div>
-  <span class="align-items-end" style="text-align: center"><?= session()->get("nome_usua") ?></span>
+  <span class="align-items-end" style="text-align: center"><?= sprintf("%s %s", ICONE_USUARIO, session()->get("nome_usua")) ?></span>
 </nav>

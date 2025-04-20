@@ -77,3 +77,20 @@ defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7);     // invalid u
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8);       // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9);      // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125);    // highest automatically-assigned error code
+
+define("ICONE_CADASTRO", '<i class="fa-solid fa-address-card"></i>');
+define("ICONE_PAGADOR", '<i class="fa-solid fa-money-check-dollar"></i>');
+define("ICONE_USUARIO", '<i class="fa-solid fa-user"></i>');
+
+# Ícones genéricos.
+define("ICONE_FILTRO", '<i class="fa-solid fa-filter"></i>');
+define("ICONE_CONSULTAR", '<i class="fa-solid fa-search" aria-hidden="true"></i>');
+
+# Mensagens do sistema.
+define("MSG_DADOS_SALVOS", "Dados salvos com sucesso.");
+
+# Lista de Status.
+define("LIST_STATUS", [
+    "A" => "Ativo",
+    "I" => "Inativo"
+]);

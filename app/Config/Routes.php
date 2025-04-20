@@ -20,3 +20,9 @@ $routes->post("/arealogada/conta/insertUpdate", "arealogada\Conta::insertUpdate"
 $routes->post("/arealogada/conta/getList", "arealogada\Conta::getList");
 $routes->post("/arealogada/conta/getRegister", "arealogada\Conta::getRegister");
 $routes->post("/arealogada/conta/deleteRegister", "arealogada\Conta::deleteRegister");
+
+# Tela de cadastro de Pagadores.
+$routes->get("/arealogada/pagador", "arealogada\Pagador::index");
+$routes->post("/arealogada/pagador/salvar", "arealogada\Pagador::salvar");
+$routes->post("/arealogada/pagador/consultar", "arealogada\Pagador::consultar");
+$routes->post("/arealogada/pagador/excluir", "arealogada\Pagador::excluir");

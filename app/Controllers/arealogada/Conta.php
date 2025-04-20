@@ -11,9 +11,15 @@ class Conta extends BaseController
         helper("form");
     }
 
-    public function index(): string
+    public function index(): void
     {
-        return view("arealogada/conta/Principal");
+        $data = [
+            "titulo" => "Contas"
+        ];
+
+        echo view("templates/header", $data);
+        echo view("arealogada/conta/principal");
+        echo view("templates/footer");
     }
 
     public function insertUpdate(): \CodeIgniter\HTTP\ResponseInterface
@@ -50,7 +56,7 @@ class Conta extends BaseController
 
         return $this->response->setJSON([
             "error" => false, 
-            "html" => view("arealogada/conta/Lista", ["listContas" => $listContas])
+            "html" => view("arealogada/conta/lista", ["listContas" => $listContas])
         ]);
     }
 

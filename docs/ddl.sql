@@ -7,3 +7,9 @@ CREATE TABLE conta (
 );
 --
 ALTER TABLE conta ADD COLUMN dia_venct INT;
+--
+CREATE TABLE pagador (
+    id_paga INT(3) NOT NULL PRIMARY KEY, 
+    nome_paga VARCHAR(150) NOT NULL, 
+    sta_paga CHAR(1) NOT NULL 
+);

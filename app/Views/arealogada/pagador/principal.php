@@ -2,22 +2,22 @@
 	<?= view("templates/Menu") ?>
 	
 	<div class="container">
-		<span class="badge bg-primary mb-3"><i class="fa-solid fa-filter"></i> Filtros</span>
-		<form id="formFilt" action="conta/getList" method="post" class="shadow border rounded p-3 mb-3">
+		<span class="badge bg-primary mb-3"><?= sprintf("%s Filtros", ICONE_FILTRO) ?></span>
+		<form id="formFilt" action="pagador/consultar" method="post" class="shadow border rounded p-3 mb-3">
 			<div class="row">
-				<div class="col-10">
+				<div class="col-8">
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="fiilt_desc_conta" name="filt_desc_conta" placeholder="Descrição">
-						<label for="filt_desc_conta">Descrição</label>
+						<input type="text" class="form-control" name="nome_paga" placeholder="Nome">
+						<label for="nome_paga">Nome</label>
 					</div>
 				</div>
 				<div class="col-2">
 					<div class="form-floating">
-						<select class="form-select shadow" id="filt_sta_conta" name="filt_sta_conta" aria-label="Status" required>
+						<select class="form-select shadow" name="sta_paga" aria-label="Status" required>
 							<option value="A">Ativo</option>
 							<option value="I">Inativo</option>
 						</select>
-						<label for="filt_sta_conta">Status</label>
+						<label for="sta_paga">Status</label>
 					</div>
 				</div>
 				<div class="col-2">
@@ -49,8 +49,6 @@
 						<th scope="col"><span class="placeholder col-12"></span></th>
 						<th scope="col"><span class="placeholder col-12"></span></th>
 						<th scope="col"><span class="placeholder col-12"></span></th>
-						<th scope="col"><span class="placeholder col-12"></span></th>
-						<th scope="col"><span class="placeholder col-12"></span></th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
@@ -59,20 +57,8 @@
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
 					</tr>
 					<tr>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-					</tr>
-					<tr>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
@@ -83,6 +69,10 @@
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
+					</tr>
+					<tr>
+						<td><span class="placeholder col-12"></span></td>
+						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 					</tr>
@@ -91,20 +81,14 @@
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
 					</tr>
 					<tr>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
 					</tr>
 					<tr>
-						<td><span class="placeholder col-12"></span></td>
-						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
 						<td><span class="placeholder col-12"></span></td>
@@ -119,46 +103,26 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="modalInsertUpdateLabel">Cadastro de contas</h1>
+						<h1 class="modal-title fs-5" id="modalInsertUpdateLabel">Cadastro</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<form id="formInsertUpdate" action="conta/insertUpdate" method="post">
-						<input type="hidden" id="id_conta" name="id_conta">
+					<form id="formInsertUpdate" action="pagador/salvar" method="post">
+						<input type="text" name="id_paga" style="display: none;">
 						<div class="modal-body">
 							<div class="row mb-3">
-								<div class="col-12">
+								<div class="col-10">
 									<div class="form-floating">
-										<input type="text" class="form-control shadow" id="desc_conta" name="desc_conta" placeholder="Descrição" required>
-										<label for="desc_conta">Descrição</label>
+										<input type="text" class="form-control shadow" name="nome_paga" placeholder="Nome" required maxlength="150">
+										<label for="nome_paga">Nome</label>
 									</div>
 								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-4">
+								<div class="col-2">
 									<div class="form-floating">
-										<input type="text" class="form-control shadow" id="valor_conta" name="valor_conta" placeholder="Valor" required>
-										<label for="valor_conta">Valor</label>
-									</div>
-								</div>
-								<div class="col-4">
-									<div class="form-floating">
-										<select class="form-select shadow" id="dia_venct" name="dia_venct" aria-label="Dia do Vencimento" required>
-											<?php 
-												for ($i = 1; $i <= 31; $i++): 
-													?>
-													<option value="<?= $i ?>" <?= ($i == date("d") ? "selected" : "") ?>><?= $i ?></option>
-											<?php endfor; ?>
-										</select>
-										<label for="dia_venct">Dia do Vencimento</label>
-									</div>
-								</div>
-								<div class="col-4">
-									<div class="form-floating">
-										<select class="form-select shadow" id="sta_conta" name="sta_conta" aria-label="Status" required>
+										<select class="form-select shadow" name="sta_paga" aria-label="Status" required>
 											<option value="A">Ativo</option>
 											<option value="I">Inativo</option>
 										</select>
-										<label for="sta_conta" name="sta_conta">Status</label>
+										<label for="sta_paga" name="sta_paga">Status</label>
 									</div>
 								</div>
 							</div>
@@ -193,7 +157,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="<?= base_url(sprintf("public/js/arealogada/conta.js?v=%d", time())) ?>"></script>
+	<script src="<?= base_url(sprintf("public/js/arealogada/pagador.js?v=%d", time())) ?>"></script>
 </body>
 
 </html>
