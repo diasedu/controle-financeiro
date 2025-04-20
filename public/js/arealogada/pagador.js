@@ -138,6 +138,27 @@ const consultar = function(element = null)
 			} else 
 			{
 				$("#list").html(response["html"]);
+
+				const options = {
+					fixedHeader: true,
+					paging: false,
+					lengthChange: false,
+					searching: false,
+					ordering: true,
+					info: false,
+					autoWidth: true,
+					responsive: true,
+					language:
+					{
+						info: "Exibindo página _PAGE_ de _PAGES_"
+					},
+					columnDefs: [{
+						orderable: false, 
+						targets: [3]
+					}]
+				}
+
+				$("#table").DataTable(options);
 			}
 		},
 		error: function (a, b, c) {
