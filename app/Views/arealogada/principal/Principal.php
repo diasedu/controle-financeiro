@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="<?= base_url("public/css/libs/bootstrap.min.css") ?>">
-	<script src="<?= base_url("public/js/libs/bootstrap.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/bootstrap.bundle.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/jquery.min.js") ?>"></script>
-</head>
-
 <body>
 	<?= view("templates/Menu") ?>
 	
+	<div class="container">
+		<h1 class="mb-3">Bem-vindo &#128578;</h1>
+		<p>O sistema tem o intuito de agir como um lembrete de contas a serem pagas durante o mês e ano (de acordo com as contas cadastradas).</p>
+	</div>
+
 	<script src="<?= base_url(sprintf("public/js/arealogada/principal.js?v=%d", time())) ?>"></script>
 </body>
-
-</html>

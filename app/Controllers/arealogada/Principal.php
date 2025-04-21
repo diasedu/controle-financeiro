@@ -11,8 +11,10 @@ class Principal extends BaseController
         helper("form");
     }
 
-    public function index(): string
+    public function index()
     {
-        return view("arealogada/principal/principal");
+        echo view("templates/header", ["titulo" => "Principal"]);
+        echo view("arealogada/principal/principal");
+        echo view("templates/footer");
     }
 }
