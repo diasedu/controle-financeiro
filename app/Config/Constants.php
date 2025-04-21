@@ -78,13 +78,18 @@ defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8);       // database 
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9);      // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125);    // highest automatically-assigned error code
 
+# Ícones relacionados a entidades do sistema.
 define("ICONE_CADASTRO", '<i class="fa-solid fa-address-card"></i>');
 define("ICONE_PAGADOR", '<i class="fa-solid fa-money-check-dollar"></i>');
 define("ICONE_USUARIO", '<i class="fa-solid fa-user"></i>');
+define("ICONE_SAIDA", '<i class="fa-solid fa-money-bill-wave"></i>');
 
 # Ícones genéricos.
 define("ICONE_FILTRO", '<i class="fa-solid fa-filter"></i>');
 define("ICONE_CONSULTAR", '<i class="fa-solid fa-search" aria-hidden="true"></i>');
+define("ICONE_ATENCAO", '<i class="fa-solid fa-triangle-exclamation"></i>');
+define("ICONE_SUCESSO", '<i class="fa-solid fa-circle-check"></i>');
+define("ICONE_SINCRONIZAR", '<i class="fa-solid fa-rotate"></i>');
 
 # Mensagens do sistema.
 define("MSG_DADOS_SALVOS", "Dados salvos com sucesso.");

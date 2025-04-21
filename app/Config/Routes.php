@@ -26,3 +26,8 @@ $routes->get("/arealogada/pagador", "arealogada\Pagador::index");
 $routes->post("/arealogada/pagador/salvar", "arealogada\Pagador::salvar");
 $routes->post("/arealogada/pagador/consultar", "arealogada\Pagador::consultar");
 $routes->post("/arealogada/pagador/excluir", "arealogada\Pagador::excluir");
+
+# Tela de Saídas
+$routes->get("/arealogada/saida", "arealogada\Saida::index");
+$routes->post("/arealogada/saida/consultar", "arealogada\Saida::consultar");
+$routes->post("/arealogada/saida/mudarStatus", "arealogada\Saida::mudarStatus");

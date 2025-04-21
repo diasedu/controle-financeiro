@@ -19,6 +19,9 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<?= base_url("arealogada/saida") ?>"><?= sprintf("%s %s", ICONE_SAIDA, "Saída")?></a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="<?= base_url("logout") ?>"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </li>
       </ul>
