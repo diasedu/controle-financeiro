@@ -50,7 +50,10 @@ const consultar = function()
 				responsive: true,
 				language:
 				{
-					info: "Exibindo página _PAGE_ de _PAGES_"
+					info: "Exibindo página _PAGE_ de _PAGES_",
+					emptyTable: "Nenhum registro encontrado.",
+					zeroRecords: "Nenhum registro encontrado.",
+					search: "Pesquisar"
 				},
 			}
 
