@@ -93,6 +93,7 @@ define("ICONE_SINCRONIZAR", '<i class="fa-solid fa-rotate"></i>');
 
 # Mensagens do sistema.
 define("MSG_DADOS_SALVOS", "Dados salvos com sucesso.");
+define("MSG_ERRO", "Houve um problema técnico. Tente novamente mais tarde. &#128542;");
 
 # Lista de Status.
 define("LIST_STATUS", [

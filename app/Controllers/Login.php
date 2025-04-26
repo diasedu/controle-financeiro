@@ -48,7 +48,18 @@ class Login extends BaseController
 
         $usuarioModel = model("UsuarioModel");
 
-        $usuarioExists = $usuarioModel->where("email_usua", $request["email"])->find();
+        try {
+            $usuarioExists = $usuarioModel->where("email_usua", $request["email"])->find();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e)
+        {
+            $response = [
+                "error" => true,
+                "message" => MSG_ERRO,
+                "url" => ""
+            ];
+            
+            return $this->response->setJSON($response);
+        }
 
         if (empty($usuarioExists))
         {
