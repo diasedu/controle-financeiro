@@ -54,13 +54,17 @@ const consultar = function()
 					emptyTable: "Nenhum registro encontrado.",
 					zeroRecords: "Nenhum registro encontrado.",
 					search: "Pesquisar"
-				},
+				}
 			}
 
-			setTimeout(() => {
-				$(".table").DataTable(options);
-			}, 600);
-			
+			// Verifica cada tabela com a classe .table
+			$(".table").each(function ()
+			{
+				if (!$.fn.DataTable.isDataTable(this))
+				{
+					$(this).DataTable(options);
+				}
+			});
 		},
 		error: function (a, b, c) {
 			console.log(a, b, c);

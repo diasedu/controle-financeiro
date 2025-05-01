@@ -57,12 +57,12 @@ class SaidaModel extends Model
 					"pago" => false
 				];
 
-				$this->save($schema);
+				$this->insert($schema);
 			}
 		}
 
 		# Resgata as saídas do mês e ano atual.
-		$list = $this->where("mes", $mes)->where("ano", $ano)->findAll();
+		$list = $this->findAll();
 
 		$pagas = [];
 		$naoPagas = [];
@@ -79,7 +79,13 @@ class SaidaModel extends Model
 
 			array_push($pagas, $row);
 		}
+		usort($naoPagas, function ($a, $b) {
+			return strtotime($a["dt_venc"]) - strtotime($b["dt_venc"]);
+		});
 
+		usort($pagas, function ($a, $b) {
+			return strtotime($a["dt_venc"]) - strtotime($b["dt_venc"]);
+		});
 		return [
 			"listPaga" => $pagas,
 			"listNaoPaga" => $naoPagas

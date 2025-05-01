@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Controllers\Arealogada;
+
+error_log("Xdebug ativado");
 
 use App\Controllers\BaseController;
 use App\Models\Arealogada\PagadorModel;
