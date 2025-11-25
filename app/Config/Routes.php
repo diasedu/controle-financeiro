@@ -11,23 +11,36 @@ $routes->get("/", "Login::index");
 $routes->post("login/auth", "Login::auth");
 $routes->get("logout", "Login::logout");
 
+$routes->get('user/new', 'Login::newUser');
+$routes->post('user/save-new-user', 'Login::saveUser');
+
 # Tela principal
-$routes->get("/arealogada/principal", "arealogada\Principal::index");
+$routes->get("/arealogada/principal", "Principal::index");
 
-# Tela de contas.
-$routes->get("/arealogada/conta", "arealogada\Conta::index");
-$routes->post("/arealogada/conta/insertUpdate", "arealogada\Conta::insertUpdate");
-$routes->post("/arealogada/conta/getList", "arealogada\Conta::getList");
-$routes->post("/arealogada/conta/getRegister", "arealogada\Conta::getRegister");
-$routes->post("/arealogada/conta/deleteRegister", "arealogada\Conta::deleteRegister");
+# Tela de cadastro de Marcas.
+$routes->get("/arealogada/marca", "Marca::index");
+$routes->post("/arealogada/marca/insertUpdate", "Marca::insertUpdate");
+$routes->post("/arealogada/marca/getList", "Marca::getList");
+$routes->post("/arealogada/marca/getRegister", "Marca::getRegister");
+$routes->post("/arealogada/marca/deleteRegister", "Marca::deleteRegister");
 
-# Tela de cadastro de Pagadores.
-$routes->get("/arealogada/pagador", "arealogada\Pagador::index");
-$routes->post("/arealogada/pagador/salvar", "arealogada\Pagador::salvar");
-$routes->post("/arealogada/pagador/consultar", "arealogada\Pagador::consultar");
-$routes->post("/arealogada/pagador/excluir", "arealogada\Pagador::excluir");
+# Tela de cadastro de Produtos.
+$routes->get("/arealogada/produto", "Produto::index");
+$routes->post("/arealogada/produto/insertUpdate", "Produto::insertUpdate");
+$routes->post("/arealogada/produto/getList", "Produto::getList");
+$routes->post("/arealogada/produto/getRegister", "Produto::getRegister");
+$routes->post("/arealogada/produto/deleteRegister", "Produto::deleteRegister");
 
-# Tela de Saídas
-$routes->get("/arealogada/saida", "arealogada\Saida::index");
-$routes->post("/arealogada/saida/consultar", "arealogada\Saida::consultar");
-$routes->post("/arealogada/saida/mudarStatus", "arealogada\Saida::mudarStatus");
+# Tela de cadastro de Clientes.
+$routes->get("/arealogada/cliente", "Cliente::index");
+$routes->post("/arealogada/cliente/insertUpdate", "Cliente::insertUpdate");
+$routes->post("/arealogada/cliente/getList", "Cliente::getList");
+$routes->post("/arealogada/cliente/getRegister", "Cliente::getRegister");
+$routes->post("/arealogada/cliente/deleteRegister", "Cliente::deleteRegister");
+
+# Tela de vendas
+$routes->get('/arealogada/venda', 'Venda::index');
+$routes->post('/arealogada/venda/insertUpdate', 'Venda::insertUpdate');
+$routes->post('/arealogada/venda/getList', 'Venda::getList');
+$routes->post('/arealogada/venda/getRegister', 'Venda::getRegister');
+$routes->post('/arealogada/venda/deleteRegister', 'Venda::deleteRegister');

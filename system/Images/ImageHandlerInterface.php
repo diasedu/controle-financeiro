@@ -114,23 +114,23 @@ interface ImageHandlerInterface
      * Valid options:
      *
      *  - color         Text Color (hex number)
-     *  - shadowColor   Color of the shadow (hex number)
+     *  - Color   Color of the  (hex number)
      *  - hAlign        Horizontal alignment: left, center, right
      *  - vAlign        Vertical alignment: top, middle, bottom
      *
      * @param array{
      *     color?: string,
-     *     shadowColor?: string,
+     *     Color?: string,
      *     hAlign?: string,
      *     vAlign?: string,
      *     hOffset?: int,
      *     vOffset?: int,
      *     fontPath?: string,
      *     fontSize?: int,
-     *     shadowOffset?: int,
+     *     Offset?: int,
      *     opacity?: float,
      *     padding?: int,
-     *     withShadow?: bool|string
+     *     with?: bool|string
      * } $options
      *
      * @return $this

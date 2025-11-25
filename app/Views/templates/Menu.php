@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-success text-white mb-3 shadow">
+<nav class="navbar navbar-expand-lg bg-dark text-white mb-3 ">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="<?= base_url("arealogada/principal") ?>">
-      <img src="<?= base_url("public/img/logo.png") ?>" height="50" width="60" alt="Logo">
+      <!-- -->
     </a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
@@ -13,12 +13,13 @@
             <?= sprintf("%s Cadastros", ICONE_CADASTRO) ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<?= base_url("arealogada/conta") ?>"><i class="fa-solid fa-coins"></i> Contas</a></li>
-            <li><a class="dropdown-item" href="<?= base_url("arealogada/pagador") ?>"><?= sprintf("%s Pagadores", ICONE_PAGADOR) ?></a></li>
+            <li><a class="dropdown-item" href="<?= base_url("arealogada/marca") ?>"><i class="fa-solid fa-tags"></i> Marcas</a></li>
+            <li><a class="dropdown-item" href="<?= base_url("arealogada/produto") ?>"><i class="fa-solid fa-box"></i> Produtos</a></li>
+            <li><a class="dropdown-item" href="<?= base_url("arealogada/cliente") ?>"><i class="fa-solid fa-people-group"></i> Clientes</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="<?= base_url("arealogada/saida") ?>"><?= sprintf("%s %s", ICONE_SAIDA, "Saída")?></a>
+          <a class="nav-link active text-white" aria-current="page" href="<?= base_url('arealogada/venda') ?>"><i class="fa-solid fa-house"></i> Vendas</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="<?= base_url("logout") ?>"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>

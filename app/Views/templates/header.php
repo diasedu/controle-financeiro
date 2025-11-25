@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Controle Financeiro | <?= $titulo ?></title>
-	<link rel="stylesheet" href="<?= base_url("public/css/libs/bootstrap.min.css") ?>">
-	<link rel="stylesheet" href="<?= base_url("public/css/libs/datatables.min.css") ?>">
-	<link rel="stylesheet" href="<?= base_url("public/css/libs/datatables.bootstrap5.min.css") ?>">
-	<link rel="shortcut icon" href="<?= base_url("public/img/favicon.png") ?>" type="image/x-icon">
-	<!--<script src="<?= base_url("public/js/libs/bootstrap.min.js") ?>"></script>-->
-	<script src="<?= base_url("public/js/libs/jquery.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/bootstrap.bundle.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/jquery.mask.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/datatables.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/datatables.bootstrap5.min.js") ?>"></script>
-	<script src="<?= base_url("public/js/libs/fontawesome.min.js") ?>"></script>
+	<link rel="stylesheet" href="<?= base_url("css/libs/bootstrap.min.css") ?>">
+	<link rel="stylesheet" href="<?= base_url("css/libs/datatables.min.css") ?>">
+	<link rel="stylesheet" href="<?= base_url("css/libs/datatables.bootstrap5.min.css") ?>">
+	<link rel="shortcut icon" href="<?= base_url("img/favicon.png") ?>" type="image/x-icon">
+	<!--<script src="<?= base_url("js/libs/bootstrap.min.js") ?>"></script>-->
+	<script src="<?= base_url("js/libs/jquery.min.js") ?>"></script>
+	<script src="<?= base_url("js/libs/bootstrap.bundle.min.js") ?>"></script>
+	<script src="<?= base_url("js/libs/jquery.mask.min.js") ?>"></script>
+	<script src="<?= base_url("js/libs/datatables.min.js") ?>"></script>
+	<script src="<?= base_url("js/libs/datatables.bootstrap5.min.js") ?>"></script>
+	<script src="<?= base_url("js/libs/fontawesome.min.js") ?>"></script>
 </head>

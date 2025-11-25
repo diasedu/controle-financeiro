@@ -1,7 +1,5 @@
 $(function()
 {
-	$("#valor_conta").mask("000.000.000.000.000,00", { reverse: true });
-
 	$("#formFilt").on("submit", function(e)
 	{
 		e.preventDefault();
@@ -36,7 +34,7 @@ $(function()
 					},
 					columnDefs: [{
 						orderable: false, 
-						targets: [5]
+						targets: [3]
 					}]
 				}
 
@@ -72,7 +70,7 @@ $(function()
 				$("#msg").html(formatMessage(JsonContent["error"], JsonContent["message"]));
 
 				if (JsonContent["error"])
-					{
+				{
 					return;
 				}
 				
@@ -83,9 +81,7 @@ $(function()
 					$("#btnConsult").click();
 				}, 1000);
 
-				$("#modalInsertUpdate").modal("hide");
 				clearForm();
-				$("#btnConsult").click();
 			},
 			error: function (a, b, c) {
 				console.log(a, b, c);
@@ -98,24 +94,23 @@ $(function()
 
 	$("#btnDelete").on("click", function(e)
 	{
-		const id_conta = $(this).attr("attr-id");
+		const id = $(this).attr("attr-id");
 
 		$.ajax({
-			url: "conta/deleteRegister",
+			url: "marca/deleteRegister",
 			method: "post",
 			dataType: "json",
 			cache: false,
-			data: {id_conta},
+			data: {id},
 			beforeSend: function()
 			{
-				$(this).html("Processando...").prop("disabled", true);
+				$("#btnDelete").html("Processando...").prop("disabled", true);
 			},
 			success: function(JsonContent)
 			{
-				// $("#msg").html(formatMessage(JsonContent["error"], JsonContent["message"]));
-
 				if (JsonContent["error"])
 				{
+					alert(JsonContent["message"]);
 					return;
 				}
 
@@ -126,34 +121,33 @@ $(function()
 				console.log(a, b, c);
 			},
 			complete: function () {
-				$(this).html("Excluir").prop("disabled", false);
+				$("#btnDelete").html("Excluir").prop("disabled", false);
 			}
 		});
 	});
 
-	$("#btnConsult").submit();
+	$("#btnConsult").click();
 });
 
 const getRegister = function(element)
 {
-	const id_conta = $(element).attr("attr-id");
+	const id = $(element).attr("attr-id");
 
 	$.ajax({
-		url: "conta/getRegister",
+		url: "marca/getRegister",
 		method: "post",
 		dataType: "json",
 		cache: false,
-		data: {id_conta},
+		data: {id},
 		beforeSend: function()
 		{
 			$(element).html("Processando...").prop("disabled", true);
 		},
 		success: function(JsonContent)
 		{
-			// $("#msg").html(formatMessage(JsonContent["error"], JsonContent["message"]));
-
 			if (JsonContent["error"])
 			{
+				alert(JsonContent["message"]);
 				return;
 			}
 
@@ -171,37 +165,37 @@ const getRegister = function(element)
 				}
 			});
 			
-			// // Atualiza o título do modal para indicar que é uma edição
-			// $("#modalInsertUpdateLabel").text("Edição de conta");
+			// Atualiza o título do modal para indicar que é uma edição
+			$("#modalInsertUpdateLabel").text("Edição de Marca");
 		},
 		error: function (a, b, c) {
 			console.log(a, b, c);
 		},
 		complete: function () {
-			$(element).html("Editar").prop("disabled", false);
+			$(element).html('<i class="fa-solid fa-pencil"></i> Editar').prop("disabled", false);
 		}
 	});
 }
 
 const deleteRegister = function(element)
 {
-	const id_conta = $(element).attr("attr-id");
+	const id = $(element).attr("attr-id");
 
 	$("#modalConfirmation").modal("show");
-	$("#btnDelete").attr("attr-id", id_conta);
+	$("#btnDelete").attr("attr-id", id);
 }
 
 const formatMessage = function (error, message) {
 	if (error) {
 		return `
-            <div class="alert alert-danger alert-dismissible" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <div>${message}</div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `
 	} else {
 		return `
-            <div class="alert alert-success alert-dismissible" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <div>${message}</div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -212,6 +206,9 @@ const formatMessage = function (error, message) {
 const clearForm = function()
 {
 	$("#formInsertUpdate").trigger("reset");
-
+	$("#id").val("");
 	$("#msg").html("");
+	$("#modalInsertUpdateLabel").text("Cadastro de Marcas");
 }
+
+

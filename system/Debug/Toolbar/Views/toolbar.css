@@ -334,9 +334,9 @@
 }
 #debug-icon {
   background-color: #FFFFFF;
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #debug-icon a:active,
 #debug-icon a:link,
@@ -381,22 +381,22 @@
 }
 #debug-bar .toolbar {
   background-color: #FFFFFF;
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #debug-bar .toolbar img {
   filter: brightness(0) invert(0.4);
 }
 #debug-bar.fixed-top .toolbar {
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #debug-bar.fixed-top .tab {
-  box-shadow: 0 1px 4px #DFDFDF;
-  -moz-box-shadow: 0 1px 4px #DFDFDF;
-  -webkit-box-shadow: 0 1px 4px #DFDFDF;
+  box-: 0 1px 4px #DFDFDF;
+  -moz-box-: 0 1px 4px #DFDFDF;
+  -webkit-box-: 0 1px 4px #DFDFDF;
 }
 #debug-bar .muted {
   color: #434343;
@@ -423,9 +423,9 @@
 }
 #debug-bar .tab {
   background-color: #FFFFFF;
-  box-shadow: 0 -1px 4px #DFDFDF;
-  -moz-box-shadow: 0 -1px 4px #DFDFDF;
-  -webkit-box-shadow: 0 -1px 4px #DFDFDF;
+  box-: 0 -1px 4px #DFDFDF;
+  -moz-box-: 0 -1px 4px #DFDFDF;
+  -webkit-box-: 0 -1px 4px #DFDFDF;
 }
 #debug-bar .timeline th,
 #debug-bar .timeline td {
@@ -447,9 +447,9 @@
 @media (prefers-color-scheme: dark) {
   #debug-icon {
     background-color: #252525;
-    box-shadow: 0 0 4px #DFDFDF;
-    -moz-box-shadow: 0 0 4px #DFDFDF;
-    -webkit-box-shadow: 0 0 4px #DFDFDF;
+    box-: 0 0 4px #DFDFDF;
+    -moz-box-: 0 0 4px #DFDFDF;
+    -webkit-box-: 0 0 4px #DFDFDF;
   }
   #debug-icon a:active,
   #debug-icon a:link,
@@ -496,22 +496,22 @@
   }
   #debug-bar .toolbar {
     background-color: #434343;
-    box-shadow: 0 0 4px #434343;
-    -moz-box-shadow: 0 0 4px #434343;
-    -webkit-box-shadow: 0 0 4px #434343;
+    box-: 0 0 4px #434343;
+    -moz-box-: 0 0 4px #434343;
+    -webkit-box-: 0 0 4px #434343;
   }
   #debug-bar .toolbar img {
     filter: brightness(0) invert(1);
   }
   #debug-bar.fixed-top .toolbar {
-    box-shadow: 0 0 4px #434343;
-    -moz-box-shadow: 0 0 4px #434343;
-    -webkit-box-shadow: 0 0 4px #434343;
+    box-: 0 0 4px #434343;
+    -moz-box-: 0 0 4px #434343;
+    -webkit-box-: 0 0 4px #434343;
   }
   #debug-bar.fixed-top .tab {
-    box-shadow: 0 1px 4px #434343;
-    -moz-box-shadow: 0 1px 4px #434343;
-    -webkit-box-shadow: 0 1px 4px #434343;
+    box-: 0 1px 4px #434343;
+    -moz-box-: 0 1px 4px #434343;
+    -webkit-box-: 0 1px 4px #434343;
   }
   #debug-bar .muted {
     color: #DFDFDF;
@@ -538,9 +538,9 @@
   }
   #debug-bar .tab {
     background-color: #252525;
-    box-shadow: 0 -1px 4px #434343;
-    -moz-box-shadow: 0 -1px 4px #434343;
-    -webkit-box-shadow: 0 -1px 4px #434343;
+    box-: 0 -1px 4px #434343;
+    -moz-box-: 0 -1px 4px #434343;
+    -webkit-box-: 0 -1px 4px #434343;
   }
   #debug-bar .timeline th,
   #debug-bar .timeline td {
@@ -559,9 +559,9 @@
 }
 #toolbarContainer.dark #debug-icon {
   background-color: #252525;
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #toolbarContainer.dark #debug-icon a:active,
 #toolbarContainer.dark #debug-icon a:link,
@@ -608,22 +608,22 @@
 }
 #toolbarContainer.dark #debug-bar .toolbar {
   background-color: #434343;
-  box-shadow: 0 0 4px #434343;
-  -moz-box-shadow: 0 0 4px #434343;
-  -webkit-box-shadow: 0 0 4px #434343;
+  box-: 0 0 4px #434343;
+  -moz-box-: 0 0 4px #434343;
+  -webkit-box-: 0 0 4px #434343;
 }
 #toolbarContainer.dark #debug-bar .toolbar img {
   filter: brightness(0) invert(1);
 }
 #toolbarContainer.dark #debug-bar.fixed-top .toolbar {
-  box-shadow: 0 0 4px #434343;
-  -moz-box-shadow: 0 0 4px #434343;
-  -webkit-box-shadow: 0 0 4px #434343;
+  box-: 0 0 4px #434343;
+  -moz-box-: 0 0 4px #434343;
+  -webkit-box-: 0 0 4px #434343;
 }
 #toolbarContainer.dark #debug-bar.fixed-top .tab {
-  box-shadow: 0 1px 4px #434343;
-  -moz-box-shadow: 0 1px 4px #434343;
-  -webkit-box-shadow: 0 1px 4px #434343;
+  box-: 0 1px 4px #434343;
+  -moz-box-: 0 1px 4px #434343;
+  -webkit-box-: 0 1px 4px #434343;
 }
 #toolbarContainer.dark #debug-bar .muted {
   color: #DFDFDF;
@@ -650,9 +650,9 @@
 }
 #toolbarContainer.dark #debug-bar .tab {
   background-color: #252525;
-  box-shadow: 0 -1px 4px #434343;
-  -moz-box-shadow: 0 -1px 4px #434343;
-  -webkit-box-shadow: 0 -1px 4px #434343;
+  box-: 0 -1px 4px #434343;
+  -moz-box-: 0 -1px 4px #434343;
+  -webkit-box-: 0 -1px 4px #434343;
 }
 #toolbarContainer.dark #debug-bar .timeline th,
 #toolbarContainer.dark #debug-bar .timeline td {
@@ -675,9 +675,9 @@
 
 #toolbarContainer.light #debug-icon {
   background-color: #FFFFFF;
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #toolbarContainer.light #debug-icon a:active,
 #toolbarContainer.light #debug-icon a:link,
@@ -721,22 +721,22 @@
 }
 #toolbarContainer.light #debug-bar .toolbar {
   background-color: #FFFFFF;
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #toolbarContainer.light #debug-bar .toolbar img {
   filter: brightness(0) invert(0.4);
 }
 #toolbarContainer.light #debug-bar.fixed-top .toolbar {
-  box-shadow: 0 0 4px #DFDFDF;
-  -moz-box-shadow: 0 0 4px #DFDFDF;
-  -webkit-box-shadow: 0 0 4px #DFDFDF;
+  box-: 0 0 4px #DFDFDF;
+  -moz-box-: 0 0 4px #DFDFDF;
+  -webkit-box-: 0 0 4px #DFDFDF;
 }
 #toolbarContainer.light #debug-bar.fixed-top .tab {
-  box-shadow: 0 1px 4px #DFDFDF;
-  -moz-box-shadow: 0 1px 4px #DFDFDF;
-  -webkit-box-shadow: 0 1px 4px #DFDFDF;
+  box-: 0 1px 4px #DFDFDF;
+  -moz-box-: 0 1px 4px #DFDFDF;
+  -webkit-box-: 0 1px 4px #DFDFDF;
 }
 #toolbarContainer.light #debug-bar .muted {
   color: #434343;
@@ -763,9 +763,9 @@
 }
 #toolbarContainer.light #debug-bar .tab {
   background-color: #FFFFFF;
-  box-shadow: 0 -1px 4px #DFDFDF;
-  -moz-box-shadow: 0 -1px 4px #DFDFDF;
-  -webkit-box-shadow: 0 -1px 4px #DFDFDF;
+  box-: 0 -1px 4px #DFDFDF;
+  -moz-box-: 0 -1px 4px #DFDFDF;
+  -webkit-box-: 0 -1px 4px #DFDFDF;
 }
 #toolbarContainer.light #debug-bar .timeline th,
 #toolbarContainer.light #debug-bar .timeline td {

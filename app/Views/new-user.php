@@ -40,16 +40,27 @@
 
 <body class="d-flex align-items-center py-4 bg-dark">
 	<main class="form-signin w-100 m-auto">
-		<form method="post" action="login/auth" method="post">
-			<h1 class="h3 mb-3 fw-normal text-center text-white">Login</h1>
+		<form method="post" action="save-new-user" method="post">
+			<h1 class="h3 mb-3 fw-normal text-center text-white">Cadastro</h1>
+
+            <div class="form-floating mb-2">
+				<input type="text" class="form-control" id="nome" name="nome" placeholder="nome" required>
+				<label for="nome">Nome</label>
+			</div>
 
 			<div class="form-floating mb-2">
 				<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 				<label for="email">E-mail</label>
 			</div>
+
 			<div class="form-floating mb-2">
 				<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
 				<label for="senha">Senha</label>
+			</div>
+
+            <div class="form-floating mb-2">
+				<input type="password" class="form-control" id="confirma_senha" name="confirma_senha" placeholder="Confirma a senha" required>
+				<label for="confirma_senha">Senha</label>
 			</div>
 
 			<div id="msg">
@@ -87,12 +98,7 @@
 				<?php endif; ?>
             </div>
 
-			<button class="btn btn-primary w-100 py-2 mb-2" type="submit" id="btnLogin">Entrar</button>
-			<a 
-				class="btn btn-outline-secondary w-100 py-2" 
-				id="btn-new-user" 
-				href="<?= base_url('user/new') ?>"
-			>Desejo me cadastrar</a>
+			<button class="btn btn-primary w-100 py-2 mb-2" type="submit" id="btn-save-user">Salvar</button>
 		</form>
 	</main>
 </body>

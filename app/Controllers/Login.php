@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Entities\Usuario;
+use App\Models\UsuarioModel;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\RedirectResponse;
 
 class Login extends BaseController
@@ -23,92 +26,121 @@ class Login extends BaseController
         return view("login");
     }
 
-    public function auth(): \CodeIgniter\HTTP\ResponseInterface
-    {
-        $request = $this->request->getPost();
+    public function auth(): RedirectResponse {
+        $email = esc($this->request->getPost('email'));
+        $senha = esc($this->request->getPost('senha'));
 
-        $request["email"] = esc($request["email"]);
-        $request["senha"] = esc($request["senha"]);
-        
+        $r = redirect();
+        $s = session();
+
+        $params = ['email' => $email, 'senha' => $senha];
+
         $rules = [
             "email" => "required",
             "senha" => "required"
         ];
 
-        if (!$this->validateData($request, $rules))
-        {
-            $response = [
-                "error" => true,
-                "message" => validation_list_errors(),
-                "url" => ""
-            ];
-
-            return $this->response->setJSON($response);
+        if (!$this->validateData($params, $rules)) {
+            return $r->back()->withInput()->with('error', validation_errors());
         }
 
-        $usuarioModel = model("UsuarioModel");
+        $userModel = new UsuarioModel();
 
         try {
-            $usuarioExists = $usuarioModel->where("email_usua", $request["email"])->find();
-        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e)
-        {
-            $response = [
-                "error" => true,
-                "message" => MSG_ERRO,
-                "url" => ""
-            ];
-            
-            return $this->response->setJSON($response);
+            $user = $userModel->findByEmail($email);
+        } catch (DatabaseException $e) {
+            return $r->back()->withInput()->with('error', $e->getMessage());
         }
 
-        if (empty($usuarioExists))
-        {
-            $response = [
-                "error" => true,
-                "message" => "Usuário e senha incorretos.",
-                "url" => ""
-            ];
-
-            return $this->response->setJSON($response);
+        if (is_null($user)) {
+            return $r->back()->withInput()->with('error', 'Credenciais inválidas');
         }
 
-        $passIsValid = password_verify($request["senha"], $usuarioExists[0]["senha_usua"]);
-        
-        if (!$passIsValid)
-        {
-            $response = [
-                "error" => true,
-                "message" => "Usuário e senha incorretos.",
-                "url" => ""
-            ];
-
-            return $this->response->setJSON($response);
+        if (!$user->verificarSenha($senha)) {
+            return $r->back()->withInput()->with('error', 'Credenciais inválidas');
         }
 
-        unset($usuarioExists[0]["senha_usua"]);
-
-        # Inicia a sessão após o usuário efetuar o login.
-        session()->start();
-
-        session()->set([
-            "logged" => true,
-            "id_usua" => $usuarioExists[0]["id_usua"],
-            "nome_usua" => $usuarioExists[0]["nome_usua"],
-            "email_usua" => $usuarioExists[0]["email_usua"],
-            "id_sitc" => $usuarioExists[0]["id_sitc"]
+        $s->set([
+            'logged'     => true,
+            'id_usua'    => $user->getId(),
+            'nome_usua'  => $user->getNome(),
+            'email_usua' => $user->getEmail()
         ]);
 
-        $response = [
-            "error" => false,
-            "message" => "Autenticado com sucesso.",
-            "url" => "arealogada/principal"
-        ];
-
-        return $this->response->setJSON($response);
+        return $r->to('arealogada/principal');
     }
 
-    public function logout(): RedirectResponse
-    {
+    public function newUser(): string {
+        return view('new-user');
+    }
+
+    public function saveUser(): RedirectResponse {
+        $user_data = $this->request->getPost();
+        $r = redirect();
+
+        # Regras de validação
+        $rules = [
+            'nome' => [
+                'label' => 'Nome',
+                'rules' => 'required|min_length[3]|max_length[100]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'min_length' => 'O campo {field} deve ter no mínimo {param} caracteres.',
+                    'max_length' => 'O campo {field} deve ter no máximo {param} caracteres.'
+                ]
+            ],
+            'email' => [
+                'label' => 'E-mail',
+                'rules' => 'required|valid_email|max_length[100]|is_unique[usuarios.email_usua]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'valid_email' => 'O campo {field} deve conter um e-mail válido.',
+                    'max_length' => 'O campo {field} deve ter no máximo {param} caracteres.',
+                    'is_unique' => 'Este {field} já está cadastrado no sistema.'
+                ]
+            ],
+            'senha' => [
+                'label' => 'Senha',
+                'rules' => 'required|min_length[6]|max_length[255]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'min_length' => 'O campo {field} deve ter no mínimo {param} caracteres.',
+                    'max_length' => 'O campo {field} deve ter no máximo {param} caracteres.'
+                ]
+            ],
+            'confirma_senha' => [
+                'label' => 'Confirmação de Senha',
+                'rules' => 'required|matches[senha]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'matches' => 'O campo {field} deve ser igual ao campo Senha.'
+                ]
+            ]
+        ];
+
+        # Validação dos dados
+        if (!$this->validate($rules)) {
+            return $r->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        # Preparar dados para inserção
+        $userModel = new UsuarioModel();
+        
+        $usuario = new Usuario();
+        $usuario->setNome(esc($user_data['nome']))
+                ->setEmail(esc($user_data['email']))
+                ->setSenha($user_data['senha'])
+                ->setIdStatus(1); // Ajuste conforme sua necessidade (status ativo)
+
+        try {
+            $userModel->save($usuario);
+            return $r->to('/')->with('success', 'Usuário cadastrado com sucesso! Faça login para continuar.');
+        } catch (DatabaseException $e) {
+            return $r->back()->withInput()->with('error', 'Erro ao cadastrar usuário: ' . $e->getMessage());
+        }
+    }
+
+    public function logout(): RedirectResponse {
         session()->destroy();
 
         return redirect()->route("/");

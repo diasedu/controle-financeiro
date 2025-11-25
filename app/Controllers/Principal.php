@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Arealogada;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 

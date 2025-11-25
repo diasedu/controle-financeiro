@@ -102,9 +102,9 @@ abstract class BaseHandler implements ImageHandlerInterface
         'vOffset'      => 0,
         'hOffset'      => 0,
         'padding'      => 0,
-        'withShadow'   => false,
-        'shadowColor'  => '000000',
-        'shadowOffset' => 3,
+        'with'   => false,
+        'Color'  => '000000',
+        'Offset' => 3,
     ];
 
     /**
@@ -400,7 +400,7 @@ abstract class BaseHandler implements ImageHandlerInterface
     {
         $options                = array_merge($this->textDefaults, $options);
         $options['color']       = trim($options['color'], '# ');
-        $options['shadowColor'] = trim($options['shadowColor'], '# ');
+        $options['Color'] = trim($options['Color'], '# ');
 
         $this->_text($text, $options);
 
@@ -412,17 +412,17 @@ abstract class BaseHandler implements ImageHandlerInterface
      *
      * @param array{
      *     color?: string,
-     *     shadowColor?: string,
+     *     Color?: string,
      *     hAlign?: string,
      *     vAlign?: string,
      *     hOffset?: int,
      *     vOffset?: int,
      *     fontPath?: string,
      *     fontSize?: int,
-     *     shadowOffset?: int,
+     *     Offset?: int,
      *     opacity?: float,
      *     padding?: int,
-     *     withShadow?: bool|string
+     *     with?: bool|string
      * } $options
      *
      * @return void

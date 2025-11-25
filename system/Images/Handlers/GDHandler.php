@@ -422,14 +422,14 @@ class GDHandler extends BaseHandler
         // Set vertical alignment
         if ($options['vAlign'] === 'middle') {
             // Don't apply padding when you're in the middle of the image.
-            $yAxis += ($this->image()->origHeight / 2) + ($fontheight / 2) - $options['padding'] - $fontheight - $options['shadowOffset'];
+            $yAxis += ($this->image()->origHeight / 2) + ($fontheight / 2) - $options['padding'] - $fontheight - $options['Offset'];
         } elseif ($options['vAlign'] === 'bottom') {
-            $yAxis = ($this->image()->origHeight - $fontheight - $options['shadowOffset'] - ($fontheight / 2)) - $yAxis;
+            $yAxis = ($this->image()->origHeight - $fontheight - $options['Offset'] - ($fontheight / 2)) - $yAxis;
         }
 
         // Set horizontal alignment
         if ($options['hAlign'] === 'right') {
-            $xAxis += ($this->image()->origWidth - ($fontwidth * strlen($text)) - $options['shadowOffset']) - (2 * $options['padding']);
+            $xAxis += ($this->image()->origWidth - ($fontwidth * strlen($text)) - $options['Offset']) - (2 * $options['padding']);
         } elseif ($options['hAlign'] === 'center') {
             $xAxis += floor(($this->image()->origWidth - ($fontwidth * strlen($text))) / 2);
         }
@@ -437,10 +437,10 @@ class GDHandler extends BaseHandler
         $options['xAxis'] = $xAxis;
         $options['yAxis'] = $yAxis;
 
-        if ($options['withShadow']) {
+        if ($options['with']) {
             // Offset from text
-            $options['xShadow'] = $xAxis + $options['shadowOffset'];
-            $options['yShadow'] = $yAxis + $options['shadowOffset'];
+            $options['x'] = $xAxis + $options['Offset'];
+            $options['y'] = $yAxis + $options['Offset'];
 
             $this->textOverlay($text, $options, true);
         }
@@ -451,13 +451,13 @@ class GDHandler extends BaseHandler
     /**
      * Handler-specific method for overlaying text on an image.
      *
-     * @param bool $isShadow Whether we are drawing the dropshadow or actual text
+     * @param bool $is Whether we are drawing the drop or actual text
      */
-    protected function textOverlay(string $text, array $options = [], bool $isShadow = false)
+    protected function textOverlay(string $text, array $options = [], bool $is = false)
     {
         $src = $this->createImage();
 
-        /* Set RGB values for shadow
+        /* Set RGB values for 
          *
          * Get the rest of the string and split it into 2-length
          * hex values:
@@ -467,7 +467,7 @@ class GDHandler extends BaseHandler
         // Allow opacity to be applied to the text
         imagealphablending($src, true);
 
-        $color = $isShadow ? $options['shadowColor'] : $options['color'];
+        $color = $is ? $options['Color'] : $options['color'];
 
         // shorthand hex, #f00
         if (strlen($color) === 3) {
@@ -477,10 +477,10 @@ class GDHandler extends BaseHandler
         $color = str_split(substr($color, 0, 6), 2);
         $color = imagecolorclosestalpha($src, hexdec($color[0]), hexdec($color[1]), hexdec($color[2]), $opacity);
 
-        $xAxis = $isShadow ? $options['xShadow'] : $options['xAxis'];
-        $yAxis = $isShadow ? $options['yShadow'] : $options['yAxis'];
+        $xAxis = $is ? $options['x'] : $options['xAxis'];
+        $yAxis = $is ? $options['y'] : $options['yAxis'];
 
-        // Add the shadow to the source image
+        // Add the  to the source image
         if (! empty($options['fontPath'])) {
             // We have to add fontheight because imagettftext locates the bottom left corner, not top-left corner.
             imagettftext($src, $options['fontSize'], 0, (int) $xAxis, (int) ($yAxis + $options['fontheight']), $color, $options['fontPath'], $text);
