@@ -38,9 +38,10 @@ $routes->post("/arealogada/cliente/getList", "Cliente::getList");
 $routes->post("/arealogada/cliente/getRegister", "Cliente::getRegister");
 $routes->post("/arealogada/cliente/deleteRegister", "Cliente::deleteRegister");
 
-# Tela de vendas
-$routes->get('/arealogada/venda', 'Venda::index');
-$routes->post('/arealogada/venda/insertUpdate', 'Venda::insertUpdate');
-$routes->post('/arealogada/venda/getList', 'Venda::getList');
-$routes->post('/arealogada/venda/getRegister', 'Venda::getRegister');
-$routes->post('/arealogada/venda/deleteRegister', 'Venda::deleteRegister');
+# Tela de pedidos
+$routes->get('/arealogada/pedido', 'Pedido::index');
+$routes->get('/arealogada/pedido/add-itens-selecionados', 'Pedido::adicionarItens');
+$routes->post('/arealogada/pedido/insertUpdate', 'Pedido::insertUpdate');
+$routes->post('/arealogada/pedido/getList', 'Pedido::getList');
+$routes->post('/arealogada/pedido/getRegister', 'Pedido::getRegister');
+$routes->post('/arealogada/pedido/deleteRegister', 'Pedido::deleteRegister');

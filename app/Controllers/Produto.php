@@ -40,7 +40,7 @@ class Produto extends BaseController
 
         $produto->setNome($request['nome'] ?? '');
         $produto->setPreco((float) str_replace(',', '.', $request['preco'] ?? 0));
-        $produto->setTipoCobranca($request['tipo_cobranca'] ?? 'unidade');
+        $produto->setPrecoKg((float) str_replace(',', '.', $request['preco_kg'] ?? 0));
         $produto->setStatus((int) ($request['status'] ?? 1));
 
         if (!$produtoModel->save($produto)) {
@@ -72,10 +72,6 @@ class Produto extends BaseController
             $query = $query->where('status', $request['filt_status']);
         }
 
-        if (isset($request['filt_tipo_cobranca']) && $request['filt_tipo_cobranca'] !== '') {
-            $query = $query->where('tipo_cobranca', $request['filt_tipo_cobranca']);
-        }
-
         $listProdutos = $query->orderBy('nome', 'ASC')->findAll();
 
         return $this->response->setJSON([
@@ -104,7 +100,7 @@ class Produto extends BaseController
                 'id'             => $produto->getId(),
                 'nome'           => $produto->getNome(),
                 'preco'          => number_format($produto->getPreco() ?? 0, 2, '.', ''),
-                'tipo_cobranca'  => $produto->getTipoCobranca(),
+                'preco_kg'       => number_format($produto->getPrecoKg() ?? 0, 2, '.', ''),
                 'status'         => $produto->getStatus(),
             ],
         ]);

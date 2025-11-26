@@ -28,17 +28,13 @@ $(function()
 					info: false,
 					autoWidth: true,
 					responsive: true,
-					language:
-					{
-						info: "Exibindo página _PAGE_ de _PAGES_"
-					},
 					columnDefs: [{
 						orderable: false, 
-						targets: [3]
+						targets: [5]
 					}]
 				}
 
-				$("#table").DataTable(options);
+				//$("#table").DataTable(options);
 			},
 			error: function (a, b, c)
 			{
@@ -55,12 +51,20 @@ $(function()
 	{
 		e.preventDefault();
 
+		const formData = $(this).serializeArray().map(function(field)
+		{
+			if (field.name === "preco") {
+				field.value = field.value.replace(",", ".");
+			}
+			return field;
+		});
+
 		$.ajax({
 			url: $(this).attr("action"),
 			method: $(this).attr("method"),
 			dataType: "json",
 			cache: false,
-			data: $(this).serialize(),
+			data: $.param(formData),
 			beforeSend: function()
 			{
 				$("#formInsertUpdate button[type='submit']").html("Processando...").prop("disabled", true);
@@ -74,10 +78,8 @@ $(function()
 					return;
 				}
 				
-				// Se não houver erro, fecha o modal após 1 segundo
 				setTimeout(function() {
 					$("#modalInsertUpdate").modal("hide");
-					// Atualiza a lista após fechar o modal
 					$("#btnConsult").click();
 				}, 1000);
 
@@ -97,7 +99,7 @@ $(function()
 		const id = $(this).attr("attr-id");
 
 		$.ajax({
-			url: "marca/deleteRegister",
+			url: "pedido/deleteRegister",
 			method: "post",
 			dataType: "json",
 			cache: false,
@@ -134,7 +136,7 @@ const getRegister = function(element)
 	const id = $(element).attr("attr-id");
 
 	$.ajax({
-		url: "marca/getRegister",
+		url: "pedido/getRegister",
 		method: "post",
 		dataType: "json",
 		cache: false,
@@ -153,20 +155,17 @@ const getRegister = function(element)
 
 			$("#modalInsertUpdate").modal("show");
 			
-			// Preenche todos os campos do formulário com os dados da resposta
 			Object.keys(JsonContent["data"]).forEach(function(key)
 			{
 				const field = $("#" + key);
 				
-				// Verifica se o campo existe
 				if (field.length)
 				{
 					field.val(JsonContent["data"][key]);
 				}
 			});
 			
-			// Atualiza o título do modal para indicar que é uma edição
-			$("#modalInsertUpdateLabel").text("Edição de Marca");
+			$("#modalInsertUpdateLabel").text("Edição de pedido");
 		},
 		error: function (a, b, c) {
 			console.log(a, b, c);
@@ -207,8 +206,66 @@ const clearForm = function()
 {
 	$("#formInsertUpdate").trigger("reset");
 	$("#id").val("");
+	$("#preco").val("");
+	$("#tipo_cobranca").val("unidade");
+	$("#status").val("1");
 	$("#msg").html("");
-	$("#modalInsertUpdateLabel").text("Cadastro de Marcas");
 }
 
+function recalcularPreco(elemento) {
+	const id    = elemento.getAttribute('data-id');
+	const qtd   = elemento.value;
 
+	if (!qtd) {
+		return;
+	}
+
+	const preco = document.querySelector('input.valor-total[data-id="' + id + '"]');
+	const precoFormatted = preco.getAttribute('data-preco').replace(',', '.');
+
+	preco.value = (qtd * precoFormatted);
+}
+
+function getItensSelecionados() {
+    const itensSelecionados = document.querySelectorAll('.itens:checked');
+
+    if (itensSelecionados.length === 0) {
+        return [];
+    }
+
+    return Array.from(itensSelecionados).map(function(e) {
+        return e.getAttribute('data-id');
+    });
+}
+
+const form = document.querySelector('form#form-add-itens-selecionados');
+
+form.addEventListener('submit', function(e) {
+	e.preventDefault();
+
+    const itens = getItensSelecionados();
+
+    // Monta querystring corretamente
+    const params = new URLSearchParams({
+        itens: JSON.stringify(itens)
+    });
+
+    const actionUrl = form.getAttribute('action');
+    const completeUrl = `${actionUrl}?${params.toString()}`;
+
+	fetch(completeUrl)
+		.then(function(response) {
+			return response.text();
+		})
+		.then(function(html) {
+			document.querySelector('#conteudo-confirmar-itens').innerHTML = html;
+
+			document.querySelector('#pills-confirmar-itens-tab').classList.remove('disabled', 'text-secondary');
+			document.querySelector('#pills-confirmar-itens-tab').click();
+		})
+		.catch(function(erro) {
+			console.log(erro.message);
+		});
+
+
+});

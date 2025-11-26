@@ -27,6 +27,7 @@ class Produto extends Entity
         'id'             => 'int',
         'nome'           => 'string',
         'preco'          => 'float',
+        'preco_kg'       => 'float',
         'tipo_cobranca'  => 'string',
         'status'         => 'int',
     ];
@@ -58,9 +59,20 @@ class Produto extends Entity
         return $this;
     }
 
+    public function getPrecoKg(): ?float
+    {
+        return $this->attributes['preco_kg'] ?? null;
+    }
+
+    public function setPrecoKg(float $preco_kg): self
+    {
+        $this->attributes['preco_kg'] = $preco_kg;
+        return $this;
+    }
+
     public function getTipoCobranca(): ?string
     {
-        return $this->attributes['tipo_cobranca'] ?? null;
+        return ucfirst($this->attributes['tipo_cobranca']) ?? null;
     }
 
     public function setTipoCobranca(string $tipo): self

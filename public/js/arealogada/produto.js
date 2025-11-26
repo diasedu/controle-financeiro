@@ -171,7 +171,7 @@ const getRegister = function(element)
 			console.log(a, b, c);
 		},
 		complete: function () {
-			$(element).html('<i class="fa-solid fa-pencil"></i> Editar').prop("disabled", false);
+			$(element).html('<i class="fa-solid fa-pencil"></i>').prop("disabled", false);
 		}
 	});
 }

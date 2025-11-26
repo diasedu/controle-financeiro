@@ -1,5 +1,5 @@
 <span class="badge bg-primary mb-3"><i class="fa-solid fa-list"></i> <?= count($listProdutos) ?> Produto(s)</span>
-<table class="table table-bordered table-hover table-dark" id="table">
+<table class="table table-bordered table-hover table-dark table-responsible" id="table">
 	<thead>
 		<tr class="bg-dark">
 			<th scope="col">Id</th>
@@ -42,7 +42,7 @@
 							onclick="getRegister(this)"
 							title="Editar"
 						>
-							<i class="fa-solid fa-pencil"></i> Editar
+							<i class="fa-solid fa-pencil"></i>
 						</button>
 						<button 
 							class="btn btn-danger btn-sm "
@@ -50,7 +50,7 @@
 							onclick="deleteRegister(this)"
 							title="Excluir"
 						>
-							<i class="fa-solid fa-trash"></i> Excluir
+							<i class="fa-solid fa-trash"></i>
 						</button>
 					</td>
 				</tr>

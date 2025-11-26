@@ -5,19 +5,26 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Entities\Produto as ProdutoEntity;
 use App\Models\ProdutoModel;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
-class Venda extends BaseController {
+class Pedido extends BaseController {
+    private $produtoModel;
+
     public function __construct() {
         helper('form');
+
+        $this->produtoModel = new ProdutoModel();
     }
 
     public function index(): void {
         $data = [
-            'titulo' => 'Vendas',
+            'titulo' => 'Pedidos',
         ];
 
+        $produtos = $this->produtoModel->findAtivos();
+
         echo view('templates/header', $data);
-        echo view('arealogada/venda/principal');
+        echo view('arealogada/pedido/principal', ['produtos' => $produtos]);
         echo view('templates/footer');
     }
 
@@ -75,7 +82,7 @@ class Venda extends BaseController {
 
         return $this->response->setJSON([
             'error' => false,
-            'html'  => view('arealogada/produto/lista', ['listProdutos' => $listProdutos]),
+            'html'  => view('arealogada/pedido/lista', ['listProdutos' => $listProdutos]),
         ]);
     }
 
@@ -123,6 +130,18 @@ class Venda extends BaseController {
             'error'   => false,
             'message' => 'Produto excluído com sucesso.',
         ]);
+    }
+
+    public function adicionarItens(): string {
+        $itens = json_decode($this->request->getGet('itens'), true);
+
+        try {
+            $produtos = $this->produtoModel->findByIds($itens);
+        } catch (DatabaseException $e) {
+            $produtos = [];
+        }
+
+        return view('arealogada/pedido/confirmar-itens', ['produtos' => $produtos]);
     }
 }
 

@@ -15,7 +15,7 @@ class ProdutoModel extends Model
     protected $returnType = Produto::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['nome', 'preco', 'tipo_cobranca', 'status'];
+    protected $allowedFields = ['nome', 'preco', 'preco_kg', 'tipo_cobranca', 'status'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -34,15 +34,23 @@ class ProdutoModel extends Model
             'label' => 'Preço',
             'rules' => 'required|decimal',
         ],
-        'tipo_cobranca' => [
-            'label' => 'Tipo de Cobrança',
-            'rules' => 'required|in_list[unidade,quilo]',
+        'preco_kg' => [
+            'label' => 'Preço por quilo',
+            'rules' => 'decimal',
         ],
         'status' => [
             'label' => 'Status',
             'rules' => 'permit_empty|in_list[0,1]',
         ],
     ];
+
+    public function findAtivos(): array {
+        return $this->where('status', 1)->findAll();
+    }
+
+    public function findByIds(array $ids): array {
+        return $this->whereIn('id', $ids)->findAll();
+    }
 }
 
 

@@ -32,7 +32,7 @@
 							onclick="getRegister(this)"
 							title="Editar"
 						>
-							<i class="fa-solid fa-pencil"></i> Editar
+							<i class="fa-solid fa-pencil"></i> 
 						</button>
 						<button 
 							class="btn btn-danger btn-sm "
@@ -40,7 +40,7 @@
 							onclick="deleteRegister(this)"
 							title="Excluir"
 						>
-							<i class="fa-solid fa-trash"></i> Excluir
+							<i class="fa-solid fa-trash"></i>
 						</button>
 					</td>
 				</tr>

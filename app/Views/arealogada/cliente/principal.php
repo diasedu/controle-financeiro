@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<form id="formFilt" action="cliente/getList" method="post" class=" border rounded p-3 mb-3">
 			<span class="badge bg-primary mb-3"><i class="fa-solid fa-filter"></i> Filtros</span>
-			<div class="row">
+			<div class="row mb-2">
 				<div class="col-md-12">
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="filt_nome" name="filt_nome" placeholder="Nome">
@@ -25,7 +25,7 @@
 			</button>
 		</div>
 
-		<div id="list" class=" border rounded p-3 mb-3"></div>
+		<div id="list" class="border rounded p-3 mb-3 overflow-auto"></div>
 
 		<div id="listPlaceholder" style="display: none;">
 			<table class="table table-dark placeholder-glow">

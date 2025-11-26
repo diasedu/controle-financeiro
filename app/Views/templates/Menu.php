@@ -13,14 +13,14 @@
             <?= sprintf("%s Cadastros", ICONE_CADASTRO) ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<?= base_url("arealogada/marca") ?>"><i class="fa-solid fa-tags"></i> Marcas</a></li>
+            <!--<li><a class="dropdown-item" href="<?= base_url("arealogada/marca") ?>"><i class="fa-solid fa-tags"></i> Marcas</a></li>-->
             <li><a class="dropdown-item" href="<?= base_url("arealogada/produto") ?>"><i class="fa-solid fa-box"></i> Produtos</a></li>
             <li><a class="dropdown-item" href="<?= base_url("arealogada/cliente") ?>"><i class="fa-solid fa-people-group"></i> Clientes</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="<?= base_url('arealogada/venda') ?>"><i class="fa-solid fa-house"></i> Vendas</a>
-        </li>
+        <!--<li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="<?= base_url('arealogada/pedido') ?>"><i class="fa-solid fa-cart-shopping"></i> Pedidos</a>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link text-white" href="<?= base_url("logout") ?>"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </li>

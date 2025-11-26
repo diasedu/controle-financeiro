@@ -4,24 +4,14 @@
 	<div class="container-fluid">
 		<form id="formFilt" action="produto/getList" method="post" class=" border rounded p-3 mb-3">
 			<span class="badge bg-primary mb-3"><i class="fa-solid fa-filter"></i> Filtros</span>
-			<div class="row">
-				<div class="col-md-6">
+			<div class="row mb-2">
+				<div class="col-md-10">
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="filt_nome" name="filt_nome" placeholder="Nome">
 						<label for="filt_nome">Nome</label>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="form-floating mb-3">
-						<select class="form-select " id="filt_tipo_cobranca" name="filt_tipo_cobranca" aria-label="Tipo de Cobrança">
-							<option value="">Todos</option>
-							<option value="unidade">Por unidade</option>
-							<option value="quilo">Por quilo</option>
-						</select>
-						<label for="filt_tipo_cobranca">Forma de cobrança</label>
-					</div>
-				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<div class="form-floating">
 						<select class="form-select " id="filt_status" name="filt_status" aria-label="Status">
 							<option value="">Todos</option>
@@ -45,7 +35,7 @@
 			</button>
 		</div>
 
-		<div id="list" class=" border rounded p-3 mb-3"></div>
+		<div id="list" class="border rounded p-3 mb-3 overflow-auto"></div>
 
 		<div id="listPlaceholder" style="display: none;">
 			<table class="table table-dark placeholder-glow">
@@ -99,13 +89,10 @@
 										<label for="preco">Preço (R$)</label>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6 mb-3 mb-md-0">
 									<div class="form-floating">
-										<select class="form-select " id="tipo_cobranca" name="tipo_cobranca" aria-label="Tipo de cobrança" required>
-											<option value="unidade">Por unidade</option>
-											<option value="quilo">Por quilo</option>
-										</select>
-										<label for="tipo_cobranca">Forma de cobrança</label>
+										<input type="number" class="form-control" step="0.01" min="0" id="preco_kg" name="preco_kg" placeholder="Preço" required>
+										<label for="preco_kg">Preço por quilo (R$)</label>
 									</div>
 								</div>
 							</div>
