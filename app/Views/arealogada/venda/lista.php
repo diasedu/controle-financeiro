@@ -45,11 +45,14 @@
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="4">Total <span class="badge bg-success"><?= number_format($total, 2, ',', '.') ?></span></td>
-		</tr>
-	</tfoot>
+
+	<?php if (isset($total)): ?>
+		<tfoot>
+			<tr>
+				<td colspan="4">Total <span class="badge bg-success"><?= number_format($total, 2, ',', '.') ?></span></td>
+			</tr>
+		</tfoot>
+	<?php endif; ?>
 </table>
 
 
