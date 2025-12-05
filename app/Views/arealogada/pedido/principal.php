@@ -2,48 +2,7 @@
 	<?= view("templates/menu") ?>
 	
 	<div class="container-fluid">
-		<form id="formFilt" action="pedido/getList" method="post" class=" border rounded p-3 mb-3">
-			<span class="badge bg-primary mb-3"><i class="fa-solid fa-filter"></i> Filtros</span>
-			<div class="row mb-2">
-				<div class="col-md-6">
-					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="filt_nome" name="filt_nome" placeholder="Nome">
-						<label for="filt_nome">Nome</label>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="form-floating mb-3">
-						<select class="form-select " id="filt_tipo_cobranca" name="filt_tipo_cobranca" aria-label="Tipo de Cobrança">
-							<option value="">Todos</option>
-							<option value="unidade">Por unidade</option>
-							<option value="quilo">Por quilo</option>
-						</select>
-						<label for="filt_tipo_cobranca">Forma de cobrança</label>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="form-floating">
-						<select class="form-select " id="filt_status" name="filt_status" aria-label="Status">
-							<option value="">Todos</option>
-							<option value="1">Ativo</option>
-							<option value="0">Inativo</option>
-						</select>
-						<label for="filt_status">Status</label>
-					</div>
-				</div>
-			</div>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-				<button type="submit" class="btn btn-primary " id="btnConsult">
-					<i class="fa-solid fa-search"></i>
-				</button>
-			</div>
-		</form>
-
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-			<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalInsertUpdate" onclick="clearForm()">
-				<i class="fa-solid fa-plus"></i>
-			</button>
-		</div>
+		
 
 		<div id="list" class="border rounded p-3 mb-3 overflow-auto"></div>
 

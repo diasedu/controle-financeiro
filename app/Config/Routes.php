@@ -45,3 +45,15 @@ $routes->post('/arealogada/pedido/insertUpdate', 'Pedido::insertUpdate');
 $routes->post('/arealogada/pedido/getList', 'Pedido::getList');
 $routes->post('/arealogada/pedido/getRegister', 'Pedido::getRegister');
 $routes->post('/arealogada/pedido/deleteRegister', 'Pedido::deleteRegister');
+
+# Tela de vendas
+$routes->get('/arealogada/venda',               'Venda::index');
+$routes->get('/arealogada/venda/incluir-itens', 'Venda::incluirItens');
+$routes->post('/arealogada/venda/salvar',       'Venda::salvar');
+$routes->post('/arealogada/venda/editar',       'Venda::editar');
+$routes->post('/arealogada/venda/buscar',       'Venda::buscar');
+$routes->post('/arealogada/venda/excluir',      'Venda::excluir');
+$routes->post('/arealogada/venda/excluir-item', 'Venda::excluirItem');
+$routes->post('/arealogada/venda/get-venda',    'Venda::getVendaByID');
+$routes->post('/arealogada/venda/buscar-produto', 'Venda::getProdutoByID');
+$routes->post('/arealogada/venda/incluir-editar-item', 'Venda::incluirEditarItem');

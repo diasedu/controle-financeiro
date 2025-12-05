@@ -22,6 +22,9 @@
           <a class="nav-link active text-white" aria-current="page" href="<?= base_url('arealogada/pedido') ?>"><i class="fa-solid fa-cart-shopping"></i> Pedidos</a>
         </li>-->
         <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="<?= base_url('arealogada/venda') ?>"><i class="fa-solid fa-cart-shopping"></i> Vendas</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="<?= base_url("logout") ?>"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </li>
       </ul>

@@ -16,4 +16,23 @@
 	<script src="<?= base_url("js/libs/datatables.min.js") ?>"></script>
 	<script src="<?= base_url("js/libs/datatables.bootstrap5.min.js") ?>"></script>
 	<script src="<?= base_url("js/libs/fontawesome.min.js") ?>"></script>
+
+	<style>
+		#loader-overlay {
+			display: none;        /* começa oculto */
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(255, 255, 255, 0.6); /* fundo levemente branco */
+			backdrop-filter: blur(2px);           /* opcional: aplica blur */
+			z-index: 9999;        /* fica acima de tudo */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			pointer-events: all;  /* garante bloqueio */
+		}
+
+	</style>
 </head>
