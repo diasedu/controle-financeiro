@@ -18,6 +18,7 @@ class VendaItemModel extends Model
     protected $useSoftDeletes = false;
 
     protected $allowedFields = [
+        'id',
         'venda_id',
         'produto_id',
         'quantidade',
@@ -38,7 +39,8 @@ class VendaItemModel extends Model
         'preco_total'    => 'required|decimal',
     ];
 
-    public function findItensWithNameByID(int $id): array {
+    public function findItensWithNameByID($id)
+    {
         $colunas = [
             'veit.id',
             'veit.venda_id',
@@ -49,14 +51,31 @@ class VendaItemModel extends Model
             'veit.preco_total',
         ];
 
-        $builder = $this->setTable('vendas_itens veit');
+        $builder = $this->db->table('vendas_itens veit');
 
-        $resultados = $builder->select($colunas)
+        $rows = $builder->select($colunas)
             ->join('vendas', 'vendas.id = veit.venda_id', 'inner')
             ->join('produtos prod', 'veit.produto_id = prod.id', 'inner')
             ->where('veit.venda_id', $id)
-            ->findAll();
+            ->get()
+            ->getResultArray();
 
-        return $resultados;
+        return array_map(fn($row) => new VendaItem($row), $rows);
+    }
+
+    public function checkItemExiste($vendaId, $produtoId)
+    {
+        $this->where('venda_id', $vendaId);
+        $this->where('produto_id', $produtoId);
+
+        return count($this->findAll()) > 0;
+    }
+
+    public function atualizarCampos($vendaId, $produtoId, $campos)
+    {
+        $this->set($campos)
+            ->where('venda_id', $vendaId)
+            ->where('produto_id', $produtoId)
+        ->update();
     }
 }

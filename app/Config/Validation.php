@@ -41,4 +41,29 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    public array $vendas_itens = [
+        'venda_id' => [
+            'rules'  => 'required|is_natural_no_zero',
+            'errors' => [
+                'required'             => 'Venda obrigatória.',
+                'is_natural_no_zero'   => 'Venda inválida.',
+            ],
+        ],
+
+        'produto_id' => [
+            'rules'  => 'required|is_natural_no_zero',
+            'errors' => [
+                'required'             => 'Produto obrigatório.',
+                'is_natural_no_zero'   => 'Produto inválido.',
+            ],
+        ],
+
+        'quantidade' => [
+            'rules'  => 'required|is_natural_no_zero',
+            'errors' => [
+                'required'           => 'Quantidade obrigatória.',
+                'is_natural_no_zero' => 'Quantidade deve ser maior que zero.',
+            ],
+        ],
+    ];
 }

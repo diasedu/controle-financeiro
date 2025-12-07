@@ -51,6 +51,13 @@ class ProdutoModel extends Model
     public function findByIds(array $ids): array {
         return $this->whereIn('id', $ids)->findAll();
     }
+
+    public function getPrecoPorID($id)
+    {
+        $this->select('preco');
+
+        return $this->find($id);
+    }
 }
 
 

@@ -10,11 +10,10 @@ use App\Models\ClienteModel;
 use App\Models\ProdutoModel;
 use App\Models\VendaItemModel;
 use App\Models\VendaModel;
-use App\Services\VendaService;
+use App\Services\VendaItemService;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\HTTP\ResponseTrait;
-use Config\Services;
+use Exception;
 use InvalidArgumentException;
 use ReflectionException;
 
@@ -22,13 +21,15 @@ class Venda extends BaseController
 {
     use LibrariesResponseTrait;
 
-    private $vendaService;
+    private $vendaItemService;
+    private $vendaItemModel;
 
     public function __construct()
     {
         helper('form');
 
-        $this->vendaService = new VendaService();
+        $this->vendaItemService = new VendaItemService();
+        $this->vendaItemModel = new VendaItemModel();
     }
 
     public function index(): void
@@ -319,30 +320,70 @@ class Venda extends BaseController
         return $this->response->setJSON([
             'error' => false,
             'data'  => [
-                'preco' => $produto->getPreco()
+                'preco' => $produto->getPreco(),
+                'qtd_padrao' => 1
             ]
         ]);
     }
 
-    public function incluirEditarItem(): ResponseInterface
+    public function incluirEditarItem()
     {
         [
-            'venda-id' => $venda_id, 
-            'produto-id' => $produto_id, 
-            'produto-qtd' => $produto_qtd
+            'id' => $vendaId, 
+            'produto-id' => $produtoId, 
+            'produto-qtd' => $produtoQtd
         ] = $this->request->getPost();
 
-        if (empty($venda_id) || empty($produto_id) || empty($produto_qtd)) {
+        if (
+            empty($vendaId) || 
+            empty($produtoId) || 
+            empty($produtoQtd)
+        ) {
             return $this->jsonError('Parâmetros não informados');
         }
 
-        $response = $this->vendaService->processarInclusaoDeItem(
-            $venda_id, $produto_id, $produto_qtd
-        );
+        try {
+            $this->vendaItemService->processarInclusaoDeItem(
+                $vendaId, $produtoId, $produtoQtd
+            );
+        } catch (
+            DatabaseException | 
+            InvalidArgumentException | 
+            Exception $e
+        ) {
+            return $this->jsonError($e->getMessage());
+        }
 
-        return $response['error']
-            ? $this->jsonError($response['message'])
-            : $this->jsonSuccess($response['message']);
+        return $this->jsonSuccess('Transação realizada com sucesso!');
+    }
+
+    public function getItemByID()
+    {
+        $data = $this->request->getJSON(true);
+
+        ['id' => $id] = $data;
+
+        if (empty($id)) {
+            return $this->response->setJSON([
+                'error'   => true,
+                'message' => 'Parâmetros não informados'
+            ]);
+        }
+
+        try {
+            $vendaItem = $this->vendaItemModel->find($id);
+        } catch (DatabaseException $e) {
+            return $this->response->setJSON([
+                'error'   => true,
+                'message' => $e->getMessage()
+            ]);
+        }
+        
+        return $this->response->setJSON([
+            'error'   => false,
+            'message' => '',
+            'data'    => $vendaItem->toArray()
+        ]);
     }
 
 }

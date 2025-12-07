@@ -82,4 +82,9 @@ class VendaModel extends Model
     {
         return $this->where('cliente_id', $clienteId)->findAll();
     }
+
+    public function atualizaValorTotal($vendaId, $valorTotal)
+    {
+        $this->update($vendaId, ['valor_total' => $valorTotal]);
+    }
 }

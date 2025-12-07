@@ -7,6 +7,7 @@ const checkAll = document.querySelector('#check-all');
 const formEditar = document.querySelector('#form-editar');
 const $btnConsultar = document.querySelector('#btn-consultar');
 const $formIncluirEditarItem = document.querySelector('#form-incluir-editar-item');
+const $inputPesquisaProduto = document.querySelector('#input-pesquisa-produto');
 
 inputPesquisa.addEventListener('keyup', function () {
 	const busca = this.value.trim().toLowerCase();
@@ -162,14 +163,17 @@ $formIncluirEditarItem.addEventListener('submit', function(evento) {
 
 	toggleLoader();
 	
+	const vendaId = document.querySelector('#id').value;
+
 	const formData = new FormData($formIncluirEditarItem);
+	formData.append('id', vendaId);
 
 	const options = {
-		method: formEditar.method,
+		method: $formIncluirEditarItem.method,
 		body: formData
 	}
 	
-	fetch(formEditar.action, options)
+	fetch($formIncluirEditarItem.action, options)
 		.then(function(response) {
 			return response.json();
 		})
@@ -183,8 +187,14 @@ $formIncluirEditarItem.addEventListener('submit', function(evento) {
 			msg.textContent = json.message;
 
 			const $eModal =  document.querySelector('#modalIncluirEditarItem');
-			const modalIncluirEditarItem = bootstrap.Modal.getInstance($eModal) || new bootstrap.Modal($eModal);
+			
+			const modalIncluirEditarItem = (
+				bootstrap.Modal.getInstance($eModal) || 
+				new bootstrap.Modal($eModal)
+			);
+
 			modalIncluirEditarItem.toggle();
+			getVenda(vendaId)
 		})
 		.catch(function(error) {
 			console.error(error.message);
@@ -192,6 +202,27 @@ $formIncluirEditarItem.addEventListener('submit', function(evento) {
 		.finally(function() {
 			toggleLoader('hide');
 		});
+});
+
+document.getElementById('produto-qtd')
+	.addEventListener('keyup', function(evento) {
+		const $ePreco = document.getElementById('produto-preco');
+
+		const qtd = this.value;
+		const preco = $ePreco.value;
+
+		$ePreco.value = qtd * preco;
+	});
+
+$inputPesquisaProduto.addEventListener('input', function() {
+	const termo = this.value.toLowerCase();
+    const select = document.getElementById('produto-id');
+    const options = select.options;
+
+    for (let i = 0; i < options.length; i++) {
+        const texto = options[i].text.toLowerCase();
+        options[i].style.display = texto.includes(termo) ? '' : 'none';
+    }
 });
 
 $btnConsultar.click();
@@ -323,6 +354,51 @@ function excluir(elemento) {
 			}
 
 			document.querySelector('#btn-consultar').click();
+		})
+		.catch(function(error) {
+			console.error(error.message);
+		})
+		.finally(function() {
+			toggleLoader('hide');
+		});
+}
+
+function editarItem(elemento) {
+	toggleLoader();
+
+	abrirModalIncluirEditarItem();
+
+	const id = elemento.getAttribute('data-id');
+	const vendaId = elemento.getAttribute('data-venda-id');
+	const options = {
+		method: 'POST',
+		body: JSON.stringify({
+			id: id
+		})
+	}
+	
+	fetch('venda/get-item', options)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(json) {
+			if (json.error) {
+				alert(json.message);
+				return;
+			}
+
+			const $produtoId    = document.querySelector('#produto-id');
+			const $produtoQtd   = document.querySelector('#produto-qtd');
+			const $produtoPreco = document.querySelector('#produto-preco');
+			
+			$produtoId.value = json.data.produto_id;
+			$produtoQtd.value = json.data.quantidade;
+			$produtoPreco.value = json.data.preco_total;
+
+			$inputPesquisaProduto.setAttribute('readonly', true);
+			$produtoId.setAttribute('readonly', true);
+			$produtoId.removeAttribute('size');
+
 		})
 		.catch(function(error) {
 			console.error(error.message);
@@ -467,7 +543,14 @@ function getVenda(id) {
 		});
 }
 
-function abrirModalIncluirEditarItem() {
+function abrirModalIncluirEditarItem() 
+{
+	const $produtoId = document.querySelector('#produto-id');
+	
+	$inputPesquisaProduto.removeAttribute('readonly');
+	$produtoId.removeAttribute('readonly');
+	$produtoId.setAttribute('size', 3);
+
 	const $eModal = document.getElementById('modalIncluirEditarItem');
 	const modal = new bootstrap.Modal($eModal);
 
@@ -492,6 +575,7 @@ function buscarDadosDoProduto(id) {
 			}
 
 			document.querySelector('#produto-preco').value = json.data.preco;
+			document.querySelector('#produto-qtd').value = json.data.qtd_padrao;
 		})
 		.catch(function(error) {
 			console.error(error.message);

@@ -57,3 +57,4 @@ $routes->post('/arealogada/venda/excluir-item', 'Venda::excluirItem');
 $routes->post('/arealogada/venda/get-venda',    'Venda::getVendaByID');
 $routes->post('/arealogada/venda/buscar-produto', 'Venda::getProdutoByID');
 $routes->post('/arealogada/venda/incluir-editar-item', 'Venda::incluirEditarItem');
+$routes->post('/arealogada/venda/get-item', 'Venda::getItemByID');

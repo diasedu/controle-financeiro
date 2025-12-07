@@ -41,7 +41,7 @@ class VendaItem extends Entity
         return $this->attributes['produto_nome'];
     }
 
-    public function setPrecoTotal(float $precoTotal): self {
+    public function setPrecoTotal($precoTotal): self {
         $this->attributes['preco_total'] = $precoTotal;
         return $this;
     }

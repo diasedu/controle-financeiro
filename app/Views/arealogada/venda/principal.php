@@ -161,28 +161,27 @@
 						<div class="row mb-3">
 							<div class="col">
 								<div class="form-floating">
-									<input class="form-control" id="input-pesquisa" class="input-pesquisa">
-									<label for="input-pesquisar">Pesquisar</label>
+									<input class="form-control" id="input-pesquisa-produto" class="input-pesquisa-produto">
+									<label for="input-pesquisa-produto">Pesquisar</label>
 								</div>
 							</div>
 						</div>
 
 						<div class="row mb-3">
 							<div class="col">
-								<div class="form-floating">
-									<select 
-										class="form-select" 
-										id="produto-id" 
-										name="produto-id" 
-										aria-label="Produto" 
-										onchange="buscarDadosDoProduto(this.value)"
-									>
-										<?php foreach ($produtos as $produto): ?>
-											<option value="<?=  $produto->getId() ?>"><?=  $produto->getNome() ?></option>
-										<?php endforeach; ?>
-									</select>
-									<label for="produto-id">Produto</label>
-								</div>
+								<label for="produto-id">Produto</label>
+								<select 
+									class="form-control" 
+									id="produto-id" 
+									name="produto-id" 
+									aria-label="Produto" 
+									onchange="buscarDadosDoProduto(this.value)"
+									size="3"
+								>
+									<?php foreach ($produtos as $produto): ?>
+										<option value="<?=  $produto->getId() ?>"><?=  $produto->getNome() ?></option>
+									<?php endforeach; ?>
+								</select>
 							</div>
 						</div>
 
