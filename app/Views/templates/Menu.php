@@ -1,8 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="<?= base_url("arealogada/principal") ?>">
-      <!-- -->
-    </a>
     <!-- ✅ BOTÃO MOBILE -->
     <button class="navbar-toggler text-white"
       type="button"
@@ -16,9 +13,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="<?= base_url("arealogada/principal") ?>"><i class="fa-solid fa-house"></i> Principal</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?= sprintf("%s Cadastros", ICONE_CADASTRO) ?>

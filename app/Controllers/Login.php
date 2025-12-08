@@ -14,13 +14,12 @@ class Login extends BaseController
         helper("form");
     }
 
-    public function index(): string|RedirectResponse
+    public function index()
     {
         $logged = session()->get("logged");
 
-        if ($logged)
-        {
-            return redirect()->route("arealogada/principal");
+        if ($logged) {
+            return redirect()->route("arealogada/venda");
         }
 
         return view("login");
@@ -52,11 +51,7 @@ class Login extends BaseController
             return $r->back()->withInput()->with('error', $e->getMessage());
         }
 
-        if (is_null($user)) {
-            return $r->back()->withInput()->with('error', 'Credenciais inválidas');
-        }
-
-        if (!$user->verificarSenha($senha)) {
+        if (is_null($user) || !$user->verificarSenha($senha)) {
             return $r->back()->withInput()->with('error', 'Credenciais inválidas');
         }
 
@@ -67,7 +62,7 @@ class Login extends BaseController
             'email_usua' => $user->getEmail()
         ]);
 
-        return $r->to('arealogada/principal');
+        return $r->to('arealogada/venda');
     }
 
     public function newUser(): string {
