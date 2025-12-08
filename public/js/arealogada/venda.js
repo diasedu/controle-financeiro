@@ -83,13 +83,10 @@ formBuscar.addEventListener('submit', function(evento) {
 
 	toggleLoader();
 
-	const formData = new FormData(formBuscar);
+	const formData = new FormData(this);
 
 	const options = {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'text/html'
-		},
 		body: formData
 	}
 

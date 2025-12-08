@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="<?= base_url("css/libs/datatables.min.css") ?>">
 	<link rel="stylesheet" href="<?= base_url("css/libs/datatables.bootstrap5.min.css") ?>">
 	<link rel="shortcut icon" href="<?= base_url("img/favicon.png") ?>" type="image/x-icon">
-	<!--<script src="<?= base_url("js/libs/bootstrap.min.js") ?>"></script>-->
 	<script src="<?= base_url("js/libs/jquery.min.js") ?>"></script>
 	<script src="<?= base_url("js/libs/bootstrap.bundle.min.js") ?>"></script>
 	<script src="<?= base_url("js/libs/jquery.mask.min.js") ?>"></script>

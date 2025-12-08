@@ -23,6 +23,7 @@ class Venda extends BaseController
 
     private $vendaItemService;
     private $vendaItemModel;
+    private $vendaModel;
 
     public function __construct()
     {
@@ -30,6 +31,7 @@ class Venda extends BaseController
 
         $this->vendaItemService = new VendaItemService();
         $this->vendaItemModel = new VendaItemModel();
+        $this->vendaModel = new VendaModel();
     }
 
     public function index(): void
@@ -165,19 +167,13 @@ class Venda extends BaseController
         ]);
     }
 
-    public function buscar(): string
+    public function buscar()
     {   
-        $dtInicio = $this->request->getPost('data-inicio');
-        $dtFim    = $this->request->getPost('data-fim');
-
-        $vendaModel = new VendaModel();
+        $data = $this->request->getPost();
 
         try {
-            if (!empty($dtInicio) && !empty($dtFim)) {
-                $vendas = $vendaModel->findBetweenDates($dtInicio, $dtFim);
-            } else {
-                $vendas = $vendaModel->findAll();
-            }
+            $vendas = $this->vendaModel->buscarComFiltros($data);
+            
         } catch (DatabaseException $e) {
             return view('templates/error', ['message' => $e->getMessage()]);
         }

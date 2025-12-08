@@ -66,16 +66,6 @@ class VendaModel extends Model
     }
 
     /**
-     * Retorna as vendas por faixa de datas
-     */
-    public function findBetweenDates(?string $inicio, ?string $fim): array
-    {
-        return $this->where('created_at >=', $inicio)
-            ->where('created_at <=', $fim)
-            ->findAll();
-    }
-
-    /**
      * Retorna as vendas de um cliente específico
      */
     public function findByCliente(int $clienteId): array
@@ -86,5 +76,21 @@ class VendaModel extends Model
     public function atualizaValorTotal($vendaId, $valorTotal)
     {
         $this->update($vendaId, ['valor_total' => $valorTotal]);
+    }
+
+    public function buscarComFiltros($data)
+    {
+        $inicio = $data['data-inicio'] ?? null;
+        $fim = $data['data-fim'] ?? null;
+
+        if (!empty($inicio)) {
+            $this->where('created_at >=', $inicio . ' 00:00:00');
+        }
+
+        if (!empty($fim)) {
+            $this->where('created_at <=', $fim . ' 23:59:59');
+        }
+
+        return $this->findAll();
     }
 }
